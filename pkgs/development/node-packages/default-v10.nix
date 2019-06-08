@@ -53,6 +53,14 @@ nodePackages // {
     buildInputs = [ nodePackages.node-gyp-build ];
   };
 
+  matrix-appservice-irc = nodePackages.matrix-appservice-irc.override {
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postInstall = ''
+      makeWrapper '${nodejs}/bin/node' "$out/bin/matrix-appservice-irc" \
+        --add-flags "$out/lib/node_modules/matrix-appservice-irc/app.js"
+    '';
+  };
+
   node-inspector = nodePackages.node-inspector.override {
     buildInputs = [ nodePackages.node-pre-gyp ];
   };
