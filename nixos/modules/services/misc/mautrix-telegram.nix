@@ -38,13 +38,15 @@ in
       description = "Mautrix-Telegram Service - A Telegram bridge for Matrix";
       after = [ "network.target" "matrix-synapse.service" ];
       wantedBy = [ "multi-user.target" ];
+      preStart = ''
+        cd ${pkgs.mautrix-telegram}
+        ${pkgs.mautrix-telegram.alembic}/bin/alembic -x config=${configFile}/config.yaml upgrade head
+      '';
 
       serviceConfig = {
         DynamicUser = true;
-        StateDirectory = "mautrix-telegram";
-        preStart = ''
-          ${pkgs.mautrix-telegram.alembic}/bin/alembic -x config=${configFile}/config.yaml upgrade head
-        '';
+        #StateDirectory = "mautrix-telegram";
+        StateDirectory = baseNameOf "/var/lib/mautrix-telegram";
         ExecStart = ''
           ${pkgs.mautrix-telegram}/bin/mautrix-telegram -c "${configFile}/config.yaml"
         '';
