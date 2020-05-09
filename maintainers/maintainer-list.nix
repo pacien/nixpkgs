@@ -3961,6 +3961,11 @@
     github = "oyren";
     name = "Moritz Scheuren";
   };
+  pablovsky = {
+    email = "dealberapablo07@gmail.com";
+    github = "pablo1107";
+    name = "Pablo Andres Dealbera";
+  };
   pacien = {
     email = "b4gx3q.nixpkgs@pacien.net";
     github = "pacien";

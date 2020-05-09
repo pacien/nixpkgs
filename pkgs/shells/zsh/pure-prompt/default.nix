@@ -4,13 +4,13 @@ with stdenv.lib;
 
 stdenv.mkDerivation rec {
   pname = "pure-prompt";
-  version = "1.11.0";
+  version = "1.12.0";
 
   src = fetchFromGitHub {
     owner = "sindresorhus";
     repo = "pure";
     rev = "v${version}";
-    sha256 = "0nzvb5iqyn3fv9z5xba850mxphxmnsiq3wxm1rclzffislm8ml1j";
+    sha256 = "1h04z7rxmca75sxdfjgmiyf1b5z2byfn6k4srls211l0wnva2r5y";
   };
 
   installPhase = ''
@@ -25,6 +25,6 @@ stdenv.mkDerivation rec {
     homepage = https://github.com/sindresorhus/pure;
     license = licenses.mit;
     platforms = platforms.all;
-    maintainers = with maintainers; [ pacien ];
+    maintainers = with maintainers; [ pacien pablovsky ];
   };
 }
